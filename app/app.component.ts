@@ -24,6 +24,8 @@ import { Component } from '@angular/core';
       <input type="radio" [(ngModel)]="selectedTask.priority" [value]="1">1 (Low Priority)<br>
       <input type="radio" [(ngModel)]="selectedTask.priority" [value]="2">2 (Medium Priority)<br>
       <input type="radio" [(ngModel)]="selectedTask.priority" [value]="3">3 (High Priority)
+      <br>
+      <input type="radio" [(ngModel)]="selectedTask.priority" [value]="4">4 (Task Completed)
         <button (click)="finishedEditing()">Done</button>
      </div>
   </div>
@@ -49,7 +51,10 @@ export class AppComponent {
       return "bg-danger";
     } else if (currentTask.priority === 2) {
       return  "bg-warning";
-    } else {
+    } else if (currentTask.priority === 4) {
+    currentTask.done = true;
+      return ("bg-success");
+      } else {
       return "bg-info";
     }
   }
@@ -59,6 +64,7 @@ export class AppComponent {
  }
 
  finishedEditing() {
+   console.log(this.selectedTask);
     this.selectedTask = null;
   }
 
